@@ -80,22 +80,22 @@ export default function CustomBoxBuilder() {
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-black text-white flex items-center gap-2">
-            XƯỞNG "TỰ MIX HỘP QUÀ" OCOP <Sparkles className="w-6 h-6 text-amber-400" />
+          <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
+            XƯỞNG "TỰ MIX HỘP QUÀ" OCOP <Sparkles className="w-6 h-6 text-amber-500" />
           </h2>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500">
             Tự tay cá nhân hóa Travel Box theo phong cách riêng của bạn & Nhận ưu đãi 20% thẻ sinh viên
           </p>
         </div>
 
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold">
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-[#ff5e1f] text-xs font-bold shadow-xs">
           <GraduationCap className="w-4 h-4" />
           <span>Sinh Viên: Giảm Trực Tiếp 20%</span>
         </div>
       </div>
 
       {/* 5-Step Process Bar */}
-      <div className="grid grid-cols-5 gap-2 bg-slate-900/90 p-2 rounded-2xl border border-slate-800">
+      <div className="grid grid-cols-5 gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-inner">
         {steps.map((step) => {
           const Icon = step.icon;
           const isActive = currentStep === step.num;
@@ -105,15 +105,17 @@ export default function CustomBoxBuilder() {
             <button
               key={step.num}
               onClick={() => setCurrentStep(step.num)}
-              className={`py-2 px-2 rounded-xl text-center flex flex-col sm:flex-row items-center justify-center gap-1.5 transition ${
+              className={`py-2.5 px-2 rounded-xl text-center flex flex-col sm:flex-row items-center justify-center gap-1.5 transition ${
                 isActive
-                  ? "bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-stamp font-bold"
+                  ? "bg-gradient-to-r from-[#0194f3] to-[#0264c8] text-white shadow-xs font-bold"
                   : isDone
-                  ? "bg-slate-800/80 text-amber-300 font-semibold"
-                  : "text-slate-400 hover:text-white"
+                  ? "bg-white text-emerald-700 font-semibold border border-slate-200/80 shadow-xs"
+                  : "text-slate-500 hover:text-slate-800"
               }`}
             >
-              <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] bg-black/30">
+              <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
+                isActive ? "bg-white/20 text-white" : isDone ? "bg-emerald-100 text-emerald-700" : "bg-slate-200 text-slate-600"
+              }`}>
                 {isDone ? <Check className="w-3 h-3" /> : step.num}
               </div>
               <span className="text-[11px] hidden md:inline truncate">{step.title}</span>
@@ -125,13 +127,13 @@ export default function CustomBoxBuilder() {
       {/* Main Studio View (Left Options + Right Box Preview) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Step Content Area (8 Cols) */}
-        <div className="lg:col-span-8 glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800 space-y-6">
+        <div className="lg:col-span-8 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm space-y-6">
           {/* STEP 1: Choose Province */}
           {currentStep === 1 && (
             <div className="space-y-4">
               <div>
-                <h3 className="text-lg font-bold text-white">Bước 1: Chọn Tỉnh Thành Làm Chủ Đề Hộp</h3>
-                <p className="text-xs text-slate-400">Hộp quà sẽ được đóng gói theo tông màu & di sản địa phương</p>
+                <h3 className="text-lg font-black text-slate-900">Bước 1: Chọn Tỉnh Thành Làm Chủ Đề Hộp</h3>
+                <p className="text-xs text-slate-500">Hộp quà sẽ được đóng gói theo tông màu & di sản địa phương</p>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -142,7 +144,7 @@ export default function CustomBoxBuilder() {
                       key={prov.code}
                       onClick={() => setSelectedProvinceCode(prov.code)}
                       className={`relative rounded-2xl overflow-hidden cursor-pointer border-2 transition-all group ${
-                        isSelected ? "border-amber-500 shadow-gold-glow scale-[1.02]" : "border-slate-800 hover:border-slate-700"
+                        isSelected ? "border-[#0194f3] shadow-md scale-[1.02]" : "border-slate-200 hover:border-slate-300"
                       }`}
                     >
                       <div className="h-28 overflow-hidden">
@@ -152,9 +154,9 @@ export default function CustomBoxBuilder() {
                           className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
                         />
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/30 to-transparent" />
                       <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between">
-                        <span className="font-extrabold text-white text-sm">{prov.name}</span>
+                        <span className="font-extrabold text-white text-sm drop-shadow-md">{prov.name}</span>
                         {isSelected && <CheckCircle2 className="w-5 h-5 text-amber-400 fill-amber-400 text-slate-950" />}
                       </div>
                     </div>
@@ -168,8 +170,8 @@ export default function CustomBoxBuilder() {
           {currentStep === 2 && (
             <div className="space-y-4">
               <div>
-                <h3 className="text-lg font-bold text-white">Bước 2: Chọn Mô Hình 3D Lắp Ghép</h3>
-                <p className="text-xs text-slate-400">Vật phẩm biểu tượng chế tác thủ công tinh xảo đặt trên bàn học</p>
+                <h3 className="text-lg font-black text-slate-900">Bước 2: Chọn Mô Hình 3D Lắp Ghép</h3>
+                <p className="text-xs text-slate-500">Vật phẩm biểu tượng chế tác thủ công tinh xảo đặt trên bàn học</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -180,17 +182,17 @@ export default function CustomBoxBuilder() {
                       key={mod.id}
                       onClick={() => setSelectedModelId(mod.id)}
                       className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex items-center gap-4 ${
-                        isSelected ? "bg-slate-800/90 border-amber-500 shadow-gold-glow" : "bg-slate-900/60 border-slate-800 hover:border-slate-700"
+                        isSelected ? "bg-sky-50/70 border-[#0194f3] shadow-sm" : "bg-slate-50 border-slate-200 hover:border-slate-300"
                       }`}
                     >
-                      <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-slate-700">
+                      <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-slate-200 shadow-xs">
                         <img src={mod.image} alt={mod.name} className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-bold text-white text-xs leading-snug">{mod.name}</h4>
-                        <span className="text-[10px] text-amber-400 font-mono mt-1 block">Giá trị: {mod.price.toLocaleString()}đ</span>
+                        <h4 className="font-bold text-slate-900 text-xs leading-snug">{mod.name}</h4>
+                        <span className="text-[10px] text-[#ff5e1f] font-mono font-bold mt-1 block">Giá trị: {mod.price.toLocaleString()}đ</span>
                       </div>
-                      {isSelected && <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />}
+                      {isSelected && <CheckCircle2 className="w-5 h-5 text-[#0194f3] shrink-0" />}
                     </div>
                   );
                 })}
@@ -203,10 +205,10 @@ export default function CustomBoxBuilder() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-bold text-white">Bước 3: Chọn 3 Gói Đặc Sản OCOP</h3>
-                  <p className="text-xs text-slate-400">Đặc sản nông sản đạt chuẩn OCOP 4-5 sao đóng gói hút chân không</p>
+                  <h3 className="text-lg font-black text-slate-900">Bước 3: Chọn 3 Gói Đặc Sản OCOP</h3>
+                  <p className="text-xs text-slate-500">Đặc sản nông sản đạt chuẩn OCOP 4-5 sao đóng gói hút chân không</p>
                 </div>
-                <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 font-mono font-bold text-xs">
+                <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-mono font-bold text-xs">
                   {selectedSnackIds.length}/3 Món
                 </span>
               </div>
@@ -219,21 +221,21 @@ export default function CustomBoxBuilder() {
                       key={snack.id}
                       onClick={() => toggleSnack(snack.id)}
                       className={`p-3.5 rounded-2xl border-2 cursor-pointer transition-all flex items-center gap-3 ${
-                        isSelected ? "bg-amber-950/20 border-amber-500 shadow-sm" : "bg-slate-900/60 border-slate-800 hover:border-slate-700"
+                        isSelected ? "bg-amber-50/70 border-amber-400 shadow-xs" : "bg-slate-50 border-slate-200 hover:border-slate-300"
                       }`}
                     >
-                      <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 border border-slate-700">
+                      <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 border border-slate-200 shadow-xs">
                         <img src={snack.image} alt={snack.name} className="w-full h-full object-cover" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-[10px] text-amber-300 font-bold">⭐ {snack.ocopStar} Sao OCOP</span>
+                          <span className="text-[10px] text-amber-700 font-bold">⭐ {snack.ocopStar} Sao OCOP</span>
                           <span className="text-[10px] text-slate-400">({snack.weight})</span>
                         </div>
-                        <h4 className="font-bold text-white text-xs truncate mt-0.5">{snack.name}</h4>
+                        <h4 className="font-bold text-slate-900 text-xs truncate mt-0.5">{snack.name}</h4>
                       </div>
                       <div className={`w-5 h-5 rounded-md flex items-center justify-center border ${
-                        isSelected ? "bg-amber-500 border-amber-500 text-slate-950" : "border-slate-700 bg-slate-800"
+                        isSelected ? "bg-amber-500 border-amber-500 text-white" : "border-slate-300 bg-white"
                       }`}>
                         {isSelected && <Check className="w-3.5 h-3.5" />}
                       </div>
@@ -248,8 +250,8 @@ export default function CustomBoxBuilder() {
           {currentStep === 4 && (
             <div className="space-y-5">
               <div>
-                <h3 className="text-lg font-bold text-white">Bước 4: Soạn Lời Chúc & Chọn Bưu Thiếp Nghệ Thuật</h3>
-                <p className="text-xs text-slate-400">Bưu thiếp độc bản vẽ tay bởi các họa sĩ trẻ Việt Nam</p>
+                <h3 className="text-lg font-black text-slate-900">Bước 4: Soạn Lời Chúc & Chọn Bưu Thiếp Nghệ Thuật</h3>
+                <p className="text-xs text-slate-500">Bưu thiếp độc bản vẽ tay bởi các họa sĩ trẻ Việt Nam</p>
               </div>
 
               {/* Choose Postcard */}
@@ -261,15 +263,15 @@ export default function CustomBoxBuilder() {
                       key={pc.id}
                       onClick={() => setSelectedPostcardId(pc.id)}
                       className={`rounded-2xl overflow-hidden cursor-pointer border-2 transition-all ${
-                        isSelected ? "border-amber-500 shadow-gold-glow scale-[1.02]" : "border-slate-800 hover:border-slate-700"
+                        isSelected ? "border-[#0194f3] shadow-md scale-[1.02]" : "border-slate-200 hover:border-slate-300"
                       }`}
                     >
                       <div className="h-28 overflow-hidden">
                         <img src={pc.image} alt={pc.name} className="w-full h-full object-cover" />
                       </div>
-                      <div className="p-2 bg-slate-900 text-center">
-                        <p className="text-[11px] font-bold text-white truncate">{pc.name}</p>
-                        <p className="text-[9px] text-slate-400 truncate">{pc.artist}</p>
+                      <div className="p-2 bg-slate-50 text-center border-t border-slate-100">
+                        <p className="text-[11px] font-bold text-slate-800 truncate">{pc.name}</p>
+                        <p className="text-[9px] text-slate-500 truncate">{pc.artist}</p>
                       </div>
                     </div>
                   );
@@ -278,13 +280,13 @@ export default function CustomBoxBuilder() {
 
               {/* Text Greeting */}
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-300">Lời Chúc In Kèm Hộp Quà:</label>
+                <label className="text-xs font-bold text-slate-700">Lời Chúc In Kèm Hộp Quà:</label>
                 <textarea
                   rows={3}
                   value={customGreeting}
                   onChange={(e) => setCustomGreeting(e.target.value)}
                   placeholder="Nhập lời chúc dành tặng bạn bè hoặc chính bạn..."
-                  className="w-full px-4 py-3 bg-slate-800/80 border border-slate-700 rounded-xl text-white text-xs focus:outline-none focus:border-amber-500"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 text-xs focus:outline-none focus:border-[#0194f3] focus:ring-1 focus:ring-[#0194f3]"
                 />
               </div>
             </div>
@@ -294,72 +296,72 @@ export default function CustomBoxBuilder() {
           {currentStep === 5 && (
             <div className="space-y-5">
               <div>
-                <h3 className="text-lg font-bold text-white">Bước 5: Chọn Gói Hộp & Ưu Đãi Thẻ Sinh Viên</h3>
-                <p className="text-xs text-slate-400">Mua theo nhóm từ 3 đến 5 hộp để nhận thêm chiết khấu siêu hấp dẫn</p>
+                <h3 className="text-lg font-black text-slate-900">Bước 5: Chọn Gói Hộp & Ưu Đãi Thẻ Sinh Viên</h3>
+                <p className="text-xs text-slate-500">Mua theo nhóm từ 3 đến 5 hộp để nhận thêm chiết khấu siêu hấp dẫn</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div
                   onClick={() => setPackType("Solo")}
                   className={`p-4 rounded-2xl border-2 cursor-pointer transition text-center space-y-1 ${
-                    packType === "Solo" ? "border-amber-500 bg-slate-800" : "border-slate-800 bg-slate-900/60"
+                    packType === "Solo" ? "border-[#0194f3] bg-sky-50/60 shadow-xs" : "border-slate-200 bg-slate-50"
                   }`}
                 >
-                  <span className="font-bold text-white text-sm">Hộp Đơn (Solo)</span>
-                  <p className="text-[11px] text-slate-400">1 Hộp quà cá nhân hóa</p>
-                  <span className="text-xs font-mono font-bold text-amber-400 block pt-1">289.000đ</span>
+                  <span className="font-bold text-slate-900 text-sm">Hộp Đơn (Solo)</span>
+                  <p className="text-[11px] text-slate-500">1 Hộp quà cá nhân hóa</p>
+                  <span className="text-xs font-mono font-black text-[#ff5e1f] block pt-1">289.000đ</span>
                 </div>
 
                 <div
                   onClick={() => setPackType("Combo3")}
                   className={`p-4 rounded-2xl border-2 cursor-pointer transition text-center space-y-1 ${
-                    packType === "Combo3" ? "border-amber-500 bg-slate-800" : "border-slate-800 bg-slate-900/60"
+                    packType === "Combo3" ? "border-[#0194f3] bg-sky-50/60 shadow-xs" : "border-slate-200 bg-slate-50"
                   }`}
                 >
-                  <span className="font-bold text-white text-sm">Combo Nhóm (3 Hộp)</span>
-                  <p className="text-[11px] text-emerald-400 font-bold">Giảm thêm 10%</p>
-                  <span className="text-xs font-mono font-bold text-amber-400 block pt-1">780.000đ</span>
+                  <span className="font-bold text-slate-900 text-sm">Combo Nhóm (3 Hộp)</span>
+                  <p className="text-[11px] text-emerald-700 font-bold">Giảm thêm 10%</p>
+                  <span className="text-xs font-mono font-black text-[#ff5e1f] block pt-1">780.000đ</span>
                 </div>
 
                 <div
                   onClick={() => setPackType("Combo5")}
                   className={`p-4 rounded-2xl border-2 cursor-pointer transition text-center space-y-1 ${
-                    packType === "Combo5" ? "border-amber-500 bg-slate-800" : "border-slate-800 bg-slate-900/60"
+                    packType === "Combo5" ? "border-[#0194f3] bg-sky-50/60 shadow-xs" : "border-slate-200 bg-slate-50"
                   }`}
                 >
-                  <span className="font-bold text-white text-sm">Combo Phượt (5 Hộp)</span>
-                  <p className="text-[11px] text-emerald-400 font-bold">Giảm thêm 15%</p>
-                  <span className="text-xs font-mono font-bold text-amber-400 block pt-1">1.228.000đ</span>
+                  <span className="font-bold text-slate-900 text-sm">Combo Phượt (5 Hộp)</span>
+                  <p className="text-[11px] text-emerald-700 font-bold">Giảm thêm 15%</p>
+                  <span className="text-xs font-mono font-black text-[#ff5e1f] block pt-1">1.228.000đ</span>
                 </div>
               </div>
 
               {/* Student ID discount check */}
-              <div className="p-4 rounded-2xl bg-amber-950/20 border border-amber-500/40 flex items-center justify-between">
+              <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 rounded-xl bg-amber-500/20 text-amber-400">
+                  <div className="p-2.5 rounded-xl bg-amber-100 text-amber-800">
                     <GraduationCap className="w-5 h-5" />
                   </div>
                   <div>
-                    <h5 className="font-bold text-white text-xs">Áp Dụng Ưu Đãi Sinh Viên Toàn Quốc (-20%)</h5>
-                    <p className="text-[11px] text-slate-400">Đã tự động liên kết thẻ SV: {user.studentId} ({user.university})</p>
+                    <h5 className="font-bold text-slate-900 text-xs">Áp Dụng Ưu Đãi Sinh Viên Toàn Quốc (-20%)</h5>
+                    <p className="text-[11px] text-slate-600">Đã tự động liên kết thẻ SV: {user.studentId} ({user.university})</p>
                   </div>
                 </div>
                 <input
                   type="checkbox"
                   checked={isStudentDiscount}
                   onChange={(e) => setIsStudentDiscount(e.target.checked)}
-                  className="w-5 h-5 accent-amber-500 rounded cursor-pointer"
+                  className="w-5 h-5 accent-[#ff5e1f] rounded cursor-pointer"
                 />
               </div>
             </div>
           )}
 
           {/* Stepper Navigation Buttons */}
-          <div className="flex items-center justify-between pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-between pt-4 border-t border-slate-100">
             {currentStep > 1 ? (
               <button
                 onClick={() => setCurrentStep(currentStep - 1)}
-                className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs transition flex items-center gap-1.5"
+                className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition flex items-center gap-1.5"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Quay Lại</span>
@@ -369,7 +371,7 @@ export default function CustomBoxBuilder() {
             {currentStep < 5 ? (
               <button
                 onClick={() => setCurrentStep(currentStep + 1)}
-                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-xs shadow-stamp transition flex items-center gap-1.5"
+                className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#0194f3] to-[#0264c8] hover:from-[#0087df] hover:to-[#0154a9] text-white font-bold text-xs shadow-xs transition flex items-center gap-1.5"
               >
                 <span>Tiếp Theo: {steps[currentStep].title}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -377,7 +379,7 @@ export default function CustomBoxBuilder() {
             ) : (
               <button
                 onClick={() => setIsQrModalOpen(true)}
-                className="px-8 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-sm shadow-teal-glow transition flex items-center gap-2 animate-bounce"
+                className="px-8 py-3 rounded-xl bg-gradient-to-r from-[#ff5e1f] to-[#f97316] hover:from-[#f44a07] hover:to-[#ea580c] text-white font-black text-sm shadow-md shadow-orange-500/25 transition flex items-center gap-2"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>Thanh Toán VietQR ({finalTotal.toLocaleString()}đ)</span>
@@ -387,73 +389,73 @@ export default function CustomBoxBuilder() {
         </div>
 
         {/* Right Summary Box Visualizer (4 Cols) */}
-        <div className="lg:col-span-4 glass-panel rounded-3xl p-6 border border-amber-500/30 space-y-5 sticky top-24">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h4 className="font-black text-white text-sm uppercase tracking-wider flex items-center gap-1.5">
+        <div className="lg:col-span-4 bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm space-y-5 sticky top-24">
+          <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h4 className="font-black text-slate-900 text-sm uppercase tracking-wider flex items-center gap-1.5">
               📦 Xem Trước Hộp Quà
             </h4>
-            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-red-600/30 text-red-300">
+            <span className="text-[10px] font-bold px-2.5 py-0.5 rounded bg-sky-50 text-[#0194f3] border border-sky-200">
               {packType}
             </span>
           </div>
 
           {/* Box Item Checklist */}
           <div className="space-y-3 text-xs">
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
-              <span className="text-slate-400 text-[10px] uppercase">Chủ đề tỉnh:</span>
-              <div className="font-bold text-amber-300">{selectedProvince?.name}</div>
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <span className="text-slate-400 text-[10px] uppercase font-bold">Chủ đề tỉnh:</span>
+              <div className="font-bold text-[#0194f3]">{selectedProvince?.name}</div>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
-              <span className="text-slate-400 text-[10px] uppercase">Mô hình 3D:</span>
-              <div className="font-bold text-white">{selectedModel?.name}</div>
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <span className="text-slate-400 text-[10px] uppercase font-bold">Mô hình 3D:</span>
+              <div className="font-bold text-slate-800">{selectedModel?.name}</div>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
-              <span className="text-slate-400 text-[10px] uppercase">3 Đặc sản OCOP:</span>
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <span className="text-slate-400 text-[10px] uppercase font-bold">3 Đặc sản OCOP:</span>
               <ul className="space-y-0.5 mt-1">
                 {selectedSnackObjects.map((s) => (
-                  <li key={s.id} className="text-slate-300 flex items-center gap-1">
-                    <span className="text-amber-400">✔</span> {s.name}
+                  <li key={s.id} className="text-slate-700 flex items-center gap-1">
+                    <span className="text-amber-500 font-bold">✔</span> {s.name}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
-              <span className="text-slate-400 text-[10px] uppercase">Bưu thiếp nghệ thuật:</span>
-              <div className="font-bold text-white">{selectedPostcard?.name}</div>
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <span className="text-slate-400 text-[10px] uppercase font-bold">Bưu thiếp nghệ thuật:</span>
+              <div className="font-bold text-slate-800">{selectedPostcard?.name}</div>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800 space-y-1">
-              <span className="text-slate-400 text-[10px] uppercase">Tặng kèm đặc quyền:</span>
-              <div className="text-emerald-400 font-semibold flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5" /> Mã QR Nắp Hộp + Thuyết Minh Audio
+            <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
+              <span className="text-slate-400 text-[10px] uppercase font-bold">Tặng kèm đặc quyền:</span>
+              <div className="text-emerald-700 font-bold flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Mã QR Nắp Hộp + Thuyết Minh Audio
               </div>
             </div>
           </div>
 
           {/* Pricing summary */}
-          <div className="pt-3 border-t border-slate-800 space-y-1.5 text-xs">
-            <div className="flex justify-between text-slate-400">
+          <div className="pt-3 border-t border-slate-100 space-y-1.5 text-xs">
+            <div className="flex justify-between text-slate-500">
               <span>Giá niêm yết:</span>
               <span className="line-through">{(baseBoxPrice * packMultiplier).toLocaleString()}đ</span>
             </div>
             {totalSaved > 0 && (
-              <div className="flex justify-between text-emerald-400 font-semibold">
+              <div className="flex justify-between text-emerald-700 font-semibold">
                 <span>Tiết kiệm (Combo + SV):</span>
                 <span>-{totalSaved.toLocaleString()}đ</span>
               </div>
             )}
-            <div className="flex justify-between text-base font-black text-white pt-2 border-t border-slate-800">
+            <div className="flex justify-between text-base font-black text-slate-900 pt-2 border-t border-slate-100">
               <span>Tổng thanh toán:</span>
-              <span className="text-amber-400 font-mono">{finalTotal.toLocaleString()}đ</span>
+              <span className="text-[#ff5e1f] font-mono text-xl">{finalTotal.toLocaleString()}đ</span>
             </div>
           </div>
 
           <button
             onClick={() => setIsQrModalOpen(true)}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-xs shadow-stamp transition text-center"
+            className="w-full py-3 rounded-xl bg-gradient-to-r from-[#ff5e1f] to-[#f97316] hover:from-[#f44a07] hover:to-[#ea580c] text-white font-bold text-xs shadow-md shadow-orange-500/20 transition text-center"
           >
             Đặt Mua & Sinh Mã VietQR
           </button>

@@ -14,32 +14,32 @@ export default function PassportPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       {/* Top Banner */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-red-950/60 via-slate-900 to-amber-950/60 border border-amber-500/40 flex flex-wrap items-center justify-between gap-4 shadow-xl">
+      <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded bg-red-600/30 text-red-300 font-bold text-xs uppercase border border-red-500/40">
+            <span className="px-2.5 py-0.5 rounded-lg bg-sky-50 text-[#0194f3] font-bold text-xs uppercase border border-sky-200">
               Module 1: Passport & Hub
             </span>
-            <span className="text-amber-400 text-xs font-semibold flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5" /> 63 Tỉnh Thành Độc Bản
+            <span className="text-amber-600 text-xs font-bold flex items-center gap-1">
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" /> 63 Tỉnh Thành Độc Bản
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-white">
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900">
             HỘ CHIẾU SỐ & BẢN ĐỒ VIỆT NAM TƯƠNG TÁC
           </h1>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-2xl">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-2xl">
             Khám phá tiến độ mở khóa 63 tỉnh thành, ngắm nhìn các con tem số lấp lánh và theo dõi hành trình lữ khách của bạn.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800 text-xs">
+          <div className="flex items-center gap-1 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs shadow-inner">
             <button
               onClick={() => setViewMode("map")}
               className={`px-4 py-2 rounded-xl font-bold transition flex items-center gap-1.5 ${
                 viewMode === "map"
-                  ? "bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-stamp"
-                  : "text-slate-400 hover:text-white"
+                  ? "bg-gradient-to-r from-[#0194f3] to-[#0264c8] text-white shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <MapPin className="w-4 h-4" />
@@ -49,8 +49,8 @@ export default function PassportPage() {
               onClick={() => setViewMode("passport")}
               className={`px-4 py-2 rounded-xl font-bold transition flex items-center gap-1.5 ${
                 viewMode === "passport"
-                  ? "bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-stamp"
-                  : "text-slate-400 hover:text-white"
+                  ? "bg-gradient-to-r from-[#0194f3] to-[#0264c8] text-white shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <BookOpen className="w-4 h-4" />
@@ -60,7 +60,7 @@ export default function PassportPage() {
 
           <button
             onClick={() => openActivationModal()}
-            className="px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs shadow-stamp transition flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#ff5e1f] to-[#f97316] hover:from-[#f44a07] hover:to-[#ea580c] text-white font-bold text-xs shadow-md shadow-orange-500/20 transition flex items-center gap-1.5 active:scale-95"
           >
             <QrCode className="w-4 h-4" />
             <span className="hidden sm:inline">Kích Hoạt Hộp Mới</span>

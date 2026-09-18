@@ -11,6 +11,15 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        travel: {
+          sky: "#0194F3",
+          skyDark: "#0264C8",
+          skyLight: "#E0F2FE",
+          skySurface: "#F0F7FF",
+          orange: "#FF5E1F",
+          orangeDark: "#E0480D",
+          orangeLight: "#FFF1EB",
+        },
         heritage: {
           red: "#DC2626",
           redDark: "#991B1B",
@@ -34,7 +43,10 @@ const config: Config = {
         "stamp": "0 0 20px rgba(220, 38, 38, 0.4)",
         "gold-glow": "0 0 25px rgba(245, 158, 11, 0.4)",
         "teal-glow": "0 0 25px rgba(13, 148, 136, 0.35)",
-        "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.37)"
+        "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+        "travel-card": "0 2px 12px -2px rgba(15, 23, 42, 0.08)",
+        "travel-float": "0 20px 40px -10px rgba(2, 100, 200, 0.16)",
+        "travel-cta": "0 8px 24px -4px rgba(255, 94, 31, 0.35)"
       },
       animation: {
         "stamp-drop": "stampDrop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards",

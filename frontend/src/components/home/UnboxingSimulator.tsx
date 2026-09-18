@@ -66,44 +66,44 @@ export default function UnboxingSimulator() {
   };
 
   return (
-    <div className="glass-panel rounded-3xl p-6 sm:p-10 border border-amber-500/30 relative overflow-hidden space-y-8">
+    <div className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-md relative overflow-hidden space-y-8">
       {/* Background Ambient Glow */}
-      <div className="absolute -top-32 -left-32 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-32 -left-32 w-80 h-80 bg-sky-100/50 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -right-32 w-80 h-80 bg-amber-100/50 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header */}
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold">
-          <Sparkles className="w-3.5 h-3.5 animate-spin-slow" />
+      <div className="text-center max-w-2xl mx-auto space-y-2 relative z-10">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold">
+          <Sparkles className="w-3.5 h-3.5 animate-spin-slow text-amber-500" />
           <span>TRẢI NGHIỆM UNBOXING SIMULATOR 3D</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-black text-white">
+        <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
           Khui Hộp Quà Vật Lý & Kích Hoạt Bản Đồ Số
         </h2>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-500">
           Khám phá trọn bộ 5 vật phẩm hữu hình bên trong chiếc hộp Travel Box độc bản
         </p>
       </div>
 
       {/* Box Visualizer Stage */}
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto relative z-10">
         {!isOpen ? (
           /* Sealed Box State */
-          <div className="text-center py-10 space-y-6">
+          <div className="text-center py-8 space-y-6">
             <div className="relative inline-block group cursor-pointer" onClick={handleOpenBox}>
-              <div className={`w-64 h-64 sm:w-80 sm:h-80 mx-auto rounded-3xl bg-gradient-to-br ${current.color} p-1 shadow-2xl shadow-red-950/80 group-hover:scale-105 transition-all duration-300 flex items-center justify-center relative overflow-hidden border-2 border-amber-400/40 animate-float`}>
+              <div className={`w-64 h-64 sm:w-80 sm:h-80 mx-auto rounded-3xl bg-gradient-to-br ${current.color} p-1 shadow-2xl shadow-slate-400/40 group-hover:scale-105 transition-all duration-300 flex items-center justify-center relative overflow-hidden border-2 border-amber-300/80 animate-float`}>
                 {/* Gold Ribbon Overlay */}
-                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-10 bg-amber-400/80 border-y border-amber-200 shadow-md backdrop-blur-sm" />
-                <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-10 bg-amber-400/80 border-x border-amber-200 shadow-md backdrop-blur-sm" />
+                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-10 bg-amber-400/90 border-y border-amber-200 shadow-md backdrop-blur-sm" />
+                <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-10 bg-amber-400/90 border-x border-amber-200 shadow-md backdrop-blur-sm" />
 
                 <div className="relative z-10 text-center text-white space-y-2 p-6">
-                  <div className="w-16 h-16 mx-auto rounded-2xl bg-black/40 backdrop-blur-md flex items-center justify-center border border-amber-300/40 shadow-lg">
+                  <div className="w-16 h-16 mx-auto rounded-2xl bg-black/30 backdrop-blur-md flex items-center justify-center border border-amber-300/40 shadow-lg">
                     <Gift className="w-8 h-8 text-amber-300 animate-pulse" />
                   </div>
-                  <h3 className="font-extrabold text-lg sm:text-xl tracking-wider text-amber-100">
+                  <h3 className="font-extrabold text-lg sm:text-xl tracking-wider text-white drop-shadow-md">
                     {current.province}
                   </h3>
-                  <span className="text-[11px] font-mono text-amber-200 px-2 py-0.5 rounded bg-black/40 border border-amber-300/30">
+                  <span className="text-[11px] font-mono text-amber-100 px-2.5 py-0.5 rounded bg-black/40 border border-amber-300/40 font-semibold shadow-xs">
                     Click để mở nắp hộp
                   </span>
                 </div>
@@ -113,7 +113,7 @@ export default function UnboxingSimulator() {
             <div>
               <button
                 onClick={handleOpenBox}
-                className="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-red-600 via-amber-600 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white font-extrabold text-sm shadow-stamp shadow-red-900/50 hover:scale-105 transition active:scale-95 inline-flex items-center gap-2"
+                className="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-[#ff5e1f] via-[#ff6f36] to-[#f97316] hover:from-[#f44a07] hover:to-[#ea580c] text-white font-extrabold text-sm shadow-md shadow-orange-500/25 hover:scale-105 transition active:scale-95 inline-flex items-center gap-2"
               >
                 <Package className="w-5 h-5" />
                 <span>Mở Nắp Hộp Quà {current.province} Ngay</span>
@@ -123,20 +123,20 @@ export default function UnboxingSimulator() {
         ) : (
           /* Unboxed Items Showcase */
           <div className="space-y-6 animate-in zoom-in-95 duration-500">
-            <div className="p-4 rounded-2xl bg-amber-950/30 border border-amber-500/40 flex flex-wrap items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 flex flex-wrap items-center justify-between gap-3 shadow-xs">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-amber-500/20 text-amber-400">
+                <div className="p-2 rounded-xl bg-amber-500/20 text-amber-700">
                   <CheckCircle2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm">{current.title}</h4>
-                  <p className="text-xs text-amber-200">Đã mở nắp hộp thành công! Khám phá vật phẩm bên trong:</p>
+                  <h4 className="font-bold text-slate-900 text-sm">{current.title}</h4>
+                  <p className="text-xs text-amber-800">Đã mở nắp hộp thành công! Khám phá vật phẩm bên trong:</p>
                 </div>
               </div>
 
               <button
                 onClick={handleReset}
-                className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white text-xs font-bold transition flex items-center gap-1.5"
+                className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 hover:text-slate-900 hover:bg-slate-50 text-xs font-bold transition flex items-center gap-1.5 shadow-xs"
               >
                 <RotateCcw className="w-3.5 h-3.5" /> Khui Hộp Khác
               </button>
@@ -145,55 +145,55 @@ export default function UnboxingSimulator() {
             {/* Revealed 5 Items Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Item 1: 3D Model */}
-              <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-red-600/30 text-red-300">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-red-50 text-red-600 border border-red-200">
                   Mô Hình Di Sản 3D
                 </span>
-                <h5 className="font-bold text-white text-xs">{current.model}</h5>
-                <p className="text-[11px] text-slate-400">Gỗ ép công nghệ CNC tinh xảo</p>
+                <h5 className="font-bold text-slate-900 text-xs">{current.model}</h5>
+                <p className="text-[11px] text-slate-500">Gỗ ép công nghệ CNC tinh xảo</p>
               </div>
 
               {/* Item 2: OCOP Snacks */}
-              <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/30 text-amber-300">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">
                   3 Món Đặc Sản OCOP
                 </span>
-                <ul className="text-xs text-slate-300 space-y-1">
+                <ul className="text-xs text-slate-700 space-y-1">
                   {current.snacks.map((snack, idx) => (
                     <li key={idx} className="flex items-center gap-1 text-[11px]">
-                      <span className="text-amber-400">✔</span> {snack}
+                      <span className="text-amber-600 font-bold">✔</span> {snack}
                     </li>
                   ))}
                 </ul>
               </div>
 
               {/* Item 3: Postcard */}
-              <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-cyan-600/30 text-cyan-300">
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200">
                   Bưu Thiếp Nghệ Thuật
                 </span>
-                <h5 className="font-bold text-white text-xs">{current.postcard}</h5>
-                <p className="text-[11px] text-slate-400">Kèm câu chuyện audio guide độc quyền</p>
+                <h5 className="font-bold text-slate-900 text-xs">{current.postcard}</h5>
+                <p className="text-[11px] text-slate-500">Kèm câu chuyện audio guide độc quyền</p>
               </div>
             </div>
 
             {/* Unique Activation Code In Underlid */}
-            <div className="p-5 rounded-2xl bg-gradient-to-r from-red-950/60 via-slate-900 to-amber-950/60 border border-amber-500/40 flex flex-wrap items-center justify-between gap-4">
+            <div className="p-5 rounded-2xl bg-gradient-to-r from-amber-50 via-white to-sky-50 border border-amber-300 shadow-sm flex flex-wrap items-center justify-between gap-4">
               <div className="space-y-1">
-                <div className="text-xs text-amber-400 font-bold flex items-center gap-1.5">
-                  <QrCode className="w-4 h-4" /> Mã Bảo Mật Dưới Nắp Hộp:
+                <div className="text-xs text-amber-800 font-bold flex items-center gap-1.5">
+                  <QrCode className="w-4 h-4 text-amber-600" /> Mã Bảo Mật Dưới Nắp Hộp:
                 </div>
-                <div className="text-xl font-mono font-black text-white tracking-widest">
+                <div className="text-xl font-mono font-black text-slate-900 tracking-widest">
                   {current.code}
                 </div>
-                <p className="text-[11px] text-slate-400">
+                <p className="text-[11px] text-slate-500">
                   Quét mã này để kích hoạt {current.province} trên bản đồ và nhận tem số
                 </p>
               </div>
 
               <button
                 onClick={() => openActivationModal(current.code)}
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-xs shadow-stamp transition flex items-center gap-2"
+                className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#ff5e1f] to-[#f97316] hover:from-[#f44a07] hover:to-[#ea580c] text-white font-bold text-xs shadow-md shadow-orange-500/20 transition flex items-center gap-2"
               >
                 <span>Kích Hoạt Mã Này Ngay</span>
                 <ArrowRight className="w-4 h-4" />

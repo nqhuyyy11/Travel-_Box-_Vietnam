@@ -6,27 +6,27 @@ import { Compass, Heart, ShieldCheck, Sparkles, MapPin, Phone, Mail } from "luci
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 border-t border-slate-800/80 pt-12 pb-8 text-slate-400 text-sm">
+    <footer className="bg-[#0c182a] border-t border-slate-800/80 pt-14 pb-10 text-slate-300 text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-slate-800/60">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-slate-800/80">
           {/* Col 1 & 2: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-red-600 to-amber-600 flex items-center justify-center shadow-stamp">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0194f3] to-[#0264c8] flex items-center justify-center shadow-md shadow-sky-500/20">
                 <Compass className="w-5 h-5 text-white" />
               </div>
-              <span className="font-extrabold text-lg text-white tracking-wider">
-                TRAVEL BOX <span className="text-amber-400">VIETNAM</span>
+              <span className="font-black text-xl text-white tracking-wider">
+                TRAVEL BOX <span className="text-[#ff5e1f]">VIETNAM</span>
               </span>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed pr-6">
+            <p className="text-xs text-slate-300 leading-relaxed pr-6">
               Hệ sinh thái du lịch O2O (Offline-to-Online) tiên phong kết hợp hộp quà di sản thực tế và Hộ chiếu số game hóa dành cho thế hệ trẻ Gen Z & Sinh viên Việt Nam.
             </p>
-            <div className="flex items-center gap-3 text-xs text-slate-300">
-              <span className="px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30 flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5" /> Chuẩn OCOP & Di Sản Quốc Gia
+            <div className="flex flex-wrap items-center gap-3 text-xs">
+              <span className="px-2.5 py-1 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/30 flex items-center gap-1 font-medium">
+                <ShieldCheck className="w-3.5 h-3.5 text-amber-400" /> Chuẩn OCOP & Di Sản Quốc Gia
               </span>
-              <span className="px-2.5 py-1 rounded bg-red-500/10 text-red-400 border border-red-500/30">
+              <span className="px-2.5 py-1 rounded-lg bg-red-500/15 text-red-300 border border-red-500/30 font-semibold">
                 -20% Ưu Đãi Thẻ SV
               </span>
             </div>

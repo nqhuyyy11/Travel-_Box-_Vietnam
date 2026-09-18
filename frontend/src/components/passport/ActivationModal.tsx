@@ -53,7 +53,7 @@ export default function ActivationModal() {
       particleCount: 100,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ["#DC2626", "#F59E0B", "#10B981", "#3B82F6", "#EC4899"]
+      colors: ["#0194F3", "#FF5E1F", "#10B981", "#F59E0B", "#DC2626"]
     });
   };
 
@@ -81,30 +81,30 @@ export default function ActivationModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-xl bg-slate-900 border border-amber-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="relative w-full max-w-xl bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden">
         {/* Background Ambient Glow */}
-        <div className="absolute -top-24 -right-24 w-60 h-60 bg-red-600/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-60 h-60 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-60 h-60 bg-sky-100/60 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-60 h-60 bg-amber-100/60 rounded-full blur-3xl pointer-events-none" />
 
         {/* Close button */}
         <button
           onClick={closeActivationModal}
-          className="absolute top-5 right-5 p-2 rounded-full bg-slate-800/80 text-slate-400 hover:text-white hover:bg-slate-700 transition"
+          className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 text-slate-500 hover:text-slate-800 hover:bg-slate-200 transition"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-600 to-amber-600 flex items-center justify-center shadow-stamp text-white">
+        <div className="flex items-center gap-3 mb-6 relative z-10">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0194f3] to-[#0264c8] flex items-center justify-center shadow-md shadow-sky-500/20 text-white">
             <QrCode className="w-6 h-6 animate-pulse" />
           </div>
           <div>
-            <h3 className="text-xl font-black text-white flex items-center gap-2">
-              KÍCH HOẠT HỘP QUÀ <Sparkles className="w-4 h-4 text-amber-400" />
+            <h3 className="text-xl font-black text-slate-900 flex items-center gap-2">
+              KÍCH HOẠT HỘP QUÀ <Sparkles className="w-4 h-4 text-amber-500" />
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               Quét mã QR dưới nắp hộp Travel Box hoặc nhập mã bảo mật 16 ký tự
             </p>
           </div>
@@ -112,16 +112,16 @@ export default function ActivationModal() {
 
         {/* Result Message or Input View */}
         {lastActivatedResult && lastActivatedResult.success ? (
-          <div className="space-y-6 py-2 animate-in zoom-in-95 duration-300">
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-red-950/60 to-slate-900 border border-red-500/40 text-center space-y-3">
-              <div className="inline-flex p-3 rounded-full bg-emerald-500/20 text-emerald-400 mb-1">
+          <div className="space-y-6 py-2 animate-in zoom-in-95 duration-300 relative z-10">
+            <div className="p-5 rounded-2xl bg-amber-50/80 border border-amber-200 text-center space-y-3">
+              <div className="inline-flex p-3 rounded-full bg-emerald-100 text-emerald-600 mb-1">
                 <CheckCircle2 className="w-10 h-10 animate-bounce" />
               </div>
-              <h4 className="text-lg font-bold text-white">MỞ KHÓA THÀNH CÔNG!</h4>
-              <p className="text-sm text-slate-300">{lastActivatedResult.message}</p>
+              <h4 className="text-lg font-black text-slate-900">MỞ KHÓA THÀNH CÔNG!</h4>
+              <p className="text-sm text-slate-600">{lastActivatedResult.message}</p>
               
               {lastActivatedResult.boxTitle && (
-                <div className="text-xs font-semibold text-amber-400 bg-amber-500/10 py-1.5 px-3 rounded-lg border border-amber-500/20 inline-block">
+                <div className="text-xs font-bold text-amber-800 bg-amber-100 py-1.5 px-3 rounded-lg border border-amber-200 inline-block">
                   📦 {lastActivatedResult.boxTitle}
                 </div>
               )}
@@ -129,23 +129,23 @@ export default function ActivationModal() {
 
             {/* Stamp Showcase */}
             {lastActivatedResult.stamp && (
-              <div className="p-4 rounded-2xl bg-slate-800/80 border border-amber-500/30 flex items-center gap-4">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${lastActivatedResult.stamp.hologramColor} flex items-center justify-center text-3xl shadow-stamp animate-stamp-drop`}>
+              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-4">
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${lastActivatedResult.stamp.hologramColor} flex items-center justify-center text-3xl shadow-md animate-stamp-drop`}>
                   {lastActivatedResult.stamp.icon}
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold px-2 py-0.5 rounded bg-red-600/30 text-red-400 border border-red-500/40 uppercase">
+                    <span className="text-xs font-bold px-2 py-0.5 rounded bg-red-50 text-red-600 border border-red-200 uppercase">
                       Tem Số Di Sản ({lastActivatedResult.stamp.rarity})
                     </span>
-                    <span className="text-xs text-slate-400 font-medium">
+                    <span className="text-xs text-slate-500 font-medium">
                       📍 {lastActivatedResult.stamp.provinceName}
                     </span>
                   </div>
-                  <h5 className="font-extrabold text-white text-base">
+                  <h5 className="font-black text-slate-900 text-base">
                     "{lastActivatedResult.stamp.title}"
                   </h5>
-                  <p className="text-xs text-slate-400 line-clamp-1">
+                  <p className="text-xs text-slate-500 line-clamp-1">
                     {lastActivatedResult.stamp.description}
                   </p>
                 </div>
@@ -154,11 +154,11 @@ export default function ActivationModal() {
 
             {/* XP and Coins gained */}
             <div className="grid grid-cols-2 gap-3">
-              <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-center justify-center gap-2 text-emerald-400 font-bold text-sm">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center gap-2 text-emerald-700 font-bold text-sm">
                 <Award className="w-5 h-5" />
                 <span>+{lastActivatedResult.xpGained} XP</span>
               </div>
-              <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 flex items-center justify-center gap-2 text-amber-400 font-bold text-sm">
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center gap-2 text-amber-700 font-bold text-sm">
                 <Coins className="w-5 h-5" />
                 <span>+{lastActivatedResult.coinsGained} Coins</span>
               </div>
@@ -169,7 +169,7 @@ export default function ActivationModal() {
               <Link
                 href="/passport"
                 onClick={closeActivationModal}
-                className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-stamp transition"
+                className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-[#ff5e1f] to-[#f97316] hover:from-[#f44a07] hover:to-[#ea580c] text-white font-bold text-sm text-center flex items-center justify-center gap-2 shadow-md shadow-orange-500/20 transition"
               >
                 <span>Xem Ngay Trong Sổ Hộ Chiếu</span>
                 <ArrowRight className="w-4 h-4" />
@@ -179,24 +179,24 @@ export default function ActivationModal() {
                   setInputCode("");
                   useTravelStore.setState({ lastActivatedResult: null });
                 }}
-                className="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition"
+                className="px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 font-semibold text-sm transition"
               >
                 Nhập Mã Khác
               </button>
             </div>
           </div>
         ) : (
-          <div className="space-y-5">
+          <div className="space-y-5 relative z-10">
             {lastActivatedResult && !lastActivatedResult.success && (
-              <div className="p-3 rounded-xl bg-red-950/80 border border-red-500/50 text-red-300 text-xs flex items-center gap-2 animate-in fade-in">
-                <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
+              <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2 animate-in fade-in">
+                <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
                 <span>{lastActivatedResult.message}</span>
               </div>
             )}
 
             {/* Input code form */}
             <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Nhập Mã Kích Hoạt In Dưới Nắp Hộp:
               </label>
               <div className="flex gap-2">
@@ -205,12 +205,12 @@ export default function ActivationModal() {
                   value={inputCode}
                   onChange={(e) => setInputCode(e.target.value.toUpperCase())}
                   placeholder="VD: HANOI-GENZ-2026"
-                  className="flex-1 px-4 py-3 bg-slate-800/80 border border-slate-700 rounded-xl text-white font-mono text-sm tracking-wider focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 placeholder:text-slate-500"
+                  className="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-mono text-sm tracking-wider focus:outline-none focus:border-[#0194f3] focus:ring-1 focus:ring-[#0194f3] placeholder:text-slate-400"
                 />
                 <button
                   onClick={() => handleActivate()}
                   disabled={loading || !inputCode.trim()}
-                  className="px-5 py-3 rounded-xl bg-gradient-to-r from-red-600 to-amber-600 hover:from-red-500 hover:to-amber-500 text-white font-bold text-sm shadow-stamp disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-1.5"
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#ff5e1f] to-[#f97316] hover:from-[#f44a07] hover:to-[#ea580c] text-white font-bold text-sm shadow-md shadow-orange-500/20 disabled:opacity-50 disabled:cursor-not-allowed transition flex items-center gap-1.5"
                 >
                   <Zap className="w-4 h-4" />
                   <span>{loading ? "Đang xử lý..." : "Mở Khóa"}</span>
@@ -219,20 +219,20 @@ export default function ActivationModal() {
             </div>
 
             {/* Camera QR scan Simulator */}
-            <div className="p-4 rounded-2xl bg-slate-800/50 border border-slate-700/60 flex items-center justify-between">
+            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2.5 rounded-xl bg-slate-700/60 text-amber-400">
+                <div className="p-2.5 rounded-xl bg-sky-50 text-[#0194f3] border border-sky-100">
                   <Camera className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-white">Quét Trực Tiếp Bằng Camera</div>
-                  <div className="text-[11px] text-slate-400">Tự động nhận diện mã QR in nổi trên hộp</div>
+                  <div className="text-xs font-bold text-slate-800">Quét Trực Tiếp Bằng Camera</div>
+                  <div className="text-[11px] text-slate-500">Tự động nhận diện mã QR in nổi trên hộp</div>
                 </div>
               </div>
               <button
                 onClick={() => simulateCameraScan("HAGIANG-TREK-2026")}
                 disabled={isScanning}
-                className="px-3 py-1.5 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 border border-amber-500/40 text-xs font-bold transition"
+                className="px-3 py-1.5 rounded-lg bg-sky-50 text-[#0194f3] hover:bg-sky-100 border border-sky-200 text-xs font-bold transition"
               >
                 {isScanning ? "Đang Quét..." : "Mô Phỏng Quét"}
               </button>
@@ -241,8 +241,8 @@ export default function ActivationModal() {
             {/* Quick Sample Test Codes */}
             <div className="space-y-2 pt-1">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-400 flex items-center gap-1.5">
-                  <Gift className="w-3.5 h-3.5 text-amber-400" />
+                <span className="text-xs font-bold text-slate-500 flex items-center gap-1.5">
+                  <Gift className="w-3.5 h-3.5 text-amber-500" />
                   Mã Mẫu Thử Nghiệm Nhanh (Click để thử):
                 </span>
               </div>
@@ -254,18 +254,18 @@ export default function ActivationModal() {
                       setInputCode(item.code);
                       handleActivate(item.code);
                     }}
-                    className="p-2.5 rounded-xl bg-slate-800/90 border border-slate-700/80 hover:border-amber-500/50 text-left transition-all group hover:bg-slate-700/80"
+                    className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-[#0194f3] hover:bg-sky-50/40 text-left transition-all group"
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-red-600/30 text-red-300">
+                      <span className="text-[10px] font-bold px-1.5 py-0.2 rounded bg-red-50 text-red-600 border border-red-200">
                         {item.tag}
                       </span>
-                      <span className="text-[10px] text-slate-400">{item.province}</span>
+                      <span className="text-[10px] text-slate-500">{item.province}</span>
                     </div>
-                    <div className="text-xs font-mono font-bold text-amber-300 group-hover:text-amber-200 truncate">
+                    <div className="text-xs font-mono font-bold text-slate-900 group-hover:text-[#0194f3] truncate">
                       {item.code}
                     </div>
-                    <div className="text-[10px] text-slate-400 truncate mt-0.5">
+                    <div className="text-[10px] text-slate-500 truncate mt-0.5">
                       {item.title}
                     </div>
                   </button>

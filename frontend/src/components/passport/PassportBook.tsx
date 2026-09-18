@@ -26,21 +26,21 @@ export default function PassportBook() {
       {/* Top Controls & Navigation */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-black text-white flex items-center gap-2">
-            HỘ CHIẾU SỐ LỮ KHÁCH <Sparkles className="w-5 h-5 text-amber-400" />
+          <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
+            HỘ CHIẾU SỐ LỮ KHÁCH <Sparkles className="w-5 h-5 text-amber-500" />
           </h2>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500">
             Sổ thông hành điện tử công nhận hành trình khám phá 63 tỉnh thành Việt Nam
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800">
+        <div className="flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-inner">
           <button
             onClick={() => setActiveTab("passport")}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTab === "passport"
-                ? "bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-sm"
-                : "text-slate-400 hover:text-white"
+                ? "bg-gradient-to-r from-[#0194f3] to-[#0264c8] text-white shadow-xs"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
             Trang Định Danh & Thẻ SV
@@ -49,8 +49,8 @@ export default function PassportBook() {
             onClick={() => setActiveTab("stamps")}
             className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTab === "stamps"
-                ? "bg-gradient-to-r from-red-600 to-amber-600 text-white shadow-sm"
-                : "text-slate-400 hover:text-white"
+                ? "bg-gradient-to-r from-[#0194f3] to-[#0264c8] text-white shadow-xs"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
             Bộ Sưu Tập Tem Số ({user.collectedStamps.length}/63)
@@ -199,26 +199,26 @@ export default function PassportBook() {
                   key={prov.code}
                   className={`p-5 rounded-3xl border transition-all ${
                     isUnlocked
-                      ? "glass-panel border-amber-500/40 shadow-gold-glow bg-slate-900/90"
-                      : "bg-slate-900/40 border-slate-800 opacity-60 hover:opacity-80"
+                      ? "bg-white border-amber-300 shadow-md"
+                      : "bg-slate-50 border-slate-200/90 opacity-70 hover:opacity-95"
                   }`}
                 >
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+                      <span className="text-xs font-bold px-2.5 py-0.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200">
                         {prov.name}
                       </span>
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-semibold">
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-amber-50 text-amber-700 font-bold border border-amber-200">
                         {prov.stamp.rarity}
                       </span>
                     </div>
 
                     {isUnlocked ? (
-                      <span className="p-1 rounded-full bg-emerald-500/20 text-emerald-400">
+                      <span className="p-1 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200">
                         <CheckCircle2 className="w-4 h-4" />
                       </span>
                     ) : (
-                      <span className="p-1 rounded-full bg-slate-800 text-slate-500">
+                      <span className="p-1 rounded-full bg-slate-100 text-slate-400">
                         <Lock className="w-4 h-4" />
                       </span>
                     )}
@@ -227,24 +227,24 @@ export default function PassportBook() {
                   {/* Stamp Graphic Preview */}
                   <div className="flex items-center gap-4 py-2">
                     <div
-                      className={`w-20 h-20 rounded-2xl flex items-center justify-center text-3xl shadow-stamp shrink-0 transition-transform ${
+                      className={`w-20 h-20 rounded-2xl flex items-center justify-center text-3xl shadow-md shrink-0 transition-transform ${
                         isUnlocked
-                          ? `bg-gradient-to-br ${prov.stamp.hologramColor} shadow-amber-500/20 animate-stamp-drop`
-                          : "bg-slate-800 border-2 border-dashed border-slate-700 grayscale"
+                          ? `bg-gradient-to-br ${prov.stamp.hologramColor} animate-stamp-drop`
+                          : "bg-slate-100 border-2 border-dashed border-slate-300 grayscale"
                       }`}
                     >
                       {prov.stamp.icon}
                     </div>
 
                     <div className="space-y-1 min-w-0">
-                      <h4 className="font-extrabold text-white text-sm truncate">
+                      <h4 className="font-black text-slate-900 text-sm truncate">
                         "{prov.stamp.title}"
                       </h4>
-                      <p className="text-xs text-slate-400 line-clamp-2">
+                      <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed">
                         {prov.stamp.description}
                       </p>
                       {isUnlocked && userStamp?.unlockedAt && (
-                        <div className="text-[10px] text-amber-400 font-mono pt-1">
+                        <div className="text-[10px] text-amber-700 font-mono font-bold pt-1">
                           Đóng dấu ngày: {userStamp.unlockedAt}
                         </div>
                       )}
@@ -252,14 +252,14 @@ export default function PassportBook() {
                   </div>
 
                   {/* Bottom Action */}
-                  <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
-                    <span className="text-[11px] text-slate-400">
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-[11px] text-slate-500 font-medium">
                       {isUnlocked ? "Đã lưu vào Hộ chiếu" : "Cần mã kích hoạt hộp"}
                     </span>
                     {!isUnlocked && (
                       <button
                         onClick={() => openActivationModal()}
-                        className="text-xs font-bold text-amber-400 hover:text-amber-300"
+                        className="text-xs font-bold text-[#0194f3] hover:text-[#0264c8]"
                       >
                         Mở khóa →
                       </button>
