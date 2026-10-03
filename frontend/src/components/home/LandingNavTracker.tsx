@@ -10,7 +10,9 @@ import {
   GraduationCap, 
   Users, 
   HelpCircle,
-  ArrowUp
+  ArrowUp,
+  Target,
+  Calculator
 } from "lucide-react";
 
 export default function LandingNavTracker() {
@@ -19,13 +21,14 @@ export default function LandingNavTracker() {
 
   const sections = [
     { id: "hero", label: "Tổng Quan", icon: Sparkles },
-    { id: "o2o-story", label: "Mô Hình O2O", icon: MapPin },
-    { id: "unboxing", label: "Đập Hộp 3D", icon: Package },
-    { id: "pillars", label: "Hộ Chiếu Số", icon: Sparkles },
+    { id: "unboxing", label: "Mở Hộp 3D", icon: Package },
+    { id: "map-passport", label: "Bản Đồ & Tem Số", icon: MapPin },
     { id: "soundscape", label: "Âm Thanh 3D", icon: Headphones },
-    { id: "collection", label: "Bộ Sưu Tập", icon: ShoppingBag },
+    { id: "custom-studio", label: "Xưởng Mix Quà", icon: ShoppingBag },
+    { id: "quests", label: "Nhiệm Vụ GPS", icon: Target },
+    { id: "budget-calc", label: "Dự Toán Phượt", icon: Calculator },
     { id: "pricing", label: "Ưu Đãi SV", icon: GraduationCap },
-    { id: "community", label: "Cộng Đồng ĐH", icon: Users },
+    { id: "community", label: "Cộng Đồng", icon: Users },
     { id: "faq", label: "FAQ", icon: HelpCircle },
   ];
 
@@ -38,7 +41,7 @@ export default function LandingNavTracker() {
         el: document.getElementById(s.id),
       }));
 
-      const scrollPosition = window.scrollY + 200;
+      const scrollPosition = window.scrollY + 250;
 
       for (let i = sectionElements.length - 1; i >= 0; i--) {
         const item = sectionElements[i];
@@ -67,8 +70,8 @@ export default function LandingNavTracker() {
   return (
     <>
       {/* Floating Bottom Center Anchor Bar */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 hidden md:block">
-        <div className="flex items-center gap-1 p-1.5 rounded-full bg-slate-900/90 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/40 text-xs">
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 hidden xl:block">
+        <div className="flex items-center gap-1 p-1.5 rounded-full bg-slate-900/95 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/50 text-xs">
           {sections.map((section) => {
             const Icon = section.icon;
             const isActive = activeSection === section.id;
@@ -83,14 +86,14 @@ export default function LandingNavTracker() {
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
-                <span className="text-[11px]">{section.label}</span>
+                <span className="text-[11px] whitespace-nowrap">{section.label}</span>
               </button>
             );
           })}
         </div>
       </div>
 
-      {/* Floating Scroll-to-Top Button for Mobile/Desktop */}
+      {/* Floating Scroll-to-Top Button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}

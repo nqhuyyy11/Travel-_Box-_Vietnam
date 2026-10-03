@@ -30,24 +30,37 @@ import {
   Star,
   ExternalLink,
   Flame,
-  Check
+  Check,
+  Calculator,
+  Compass as CompassIcon,
+  BookOpen
 } from "lucide-react";
+
+// Interactive Components
 import UnboxingSimulator from "@/components/home/UnboxingSimulator";
 import SoundscapePlayerDemo from "@/components/home/SoundscapePlayerDemo";
 import QuickOrderModal from "@/components/home/QuickOrderModal";
 import LandingNavTracker from "@/components/home/LandingNavTracker";
+
+// Deep Experience Modules Embedded Into Single-Page
+import VietnamMap from "@/components/passport/VietnamMap";
+import PassportBook from "@/components/passport/PassportBook";
+import CustomBoxBuilder from "@/components/shop/CustomBoxBuilder";
+import QuestList from "@/components/quests/QuestList";
+import BudgetCalculator from "@/components/guide/BudgetCalculator";
+
 import { useTravelStore } from "@/store/travelStore";
 import { 
   MOCK_TRAVEL_BOXES, 
   MOCK_PROVINCES, 
   MOCK_LEADERBOARD_UNIS, 
-  MOCK_FEED,
-  TEST_ACTIVATION_CODES 
+  MOCK_FEED 
 } from "@/lib/mockData";
 
 export default function HomePage() {
   const { openActivationModal } = useTravelStore();
   const [heroBg, setHeroBg] = useState<"vietnam" | "hanoi">("vietnam");
+  const [passportView, setPassportView] = useState<"map" | "book">("map");
   const [regionFilter, setRegionFilter] = useState<"all" | "bac" | "trung" | "nam">("all");
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [orderModalOpen, setOrderModalOpen] = useState(false);
@@ -92,12 +105,12 @@ export default function HomePage() {
     },
     {
       q: "Tôi có thể tự tay phối hộp quà (Custom Box) theo ý thích được không?",
-      a: "Hoàn toàn được! Bạn có thể vào mục 'Xưởng Tự Mix Quà' trên thanh điều hướng để tự chọn tỉnh thành, chọn mô hình 3D bạn thích, tự gắp 3 món đặc sản OCOP trong danh mục và tự soạn lời chúc thiệp gửi đến bạn bè, người yêu hoặc gia đình."
+      a: "Hoàn toàn được! Bạn có thể lướt tới khu vực 'Xưởng Tự Mix Quà 5 Bước' ngay trên trang này để tự chọn tỉnh thành, chọn mô hình 3D bạn thích, tự gắp 3 món đặc sản OCOP trong danh mục và tự soạn lời chúc thiệp gửi đến bạn bè, người yêu hoặc gia đình."
     }
   ];
 
   return (
-    <div className="space-y-24 pb-20">
+    <div className="space-y-28 pb-24">
       {/* ================= 1. HERO SECTION ================= */}
       <section id="hero" className="relative overflow-hidden rounded-3xl mx-3 sm:mx-6 lg:mx-8 text-white pt-10 pb-20 px-4 sm:px-8 shadow-2xl shadow-sky-950/25 border border-white/20">
         {/* Background Wallpaper with Crossfade */}
@@ -314,100 +327,53 @@ export default function HomePage() {
         <UnboxingSimulator />
       </section>
 
-      {/* ================= 4. THE 4 PILLARS OF EXPERIENCE ================= */}
-      <section id="pillars" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-black uppercase text-[#ff5e1f] tracking-wider">
-            4 TRỤ CỘT TRẢI NGHIỆM
+      {/* ================= 4. MAP & PASSPORT INTERACTIVE SHOWCASE ================= */}
+      <section id="map-passport" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <span className="text-xs font-black uppercase text-[#0194f3] tracking-wider bg-sky-50 border border-sky-200 px-3 py-1 rounded-full">
+            TRẢI NGHIỆM ĐỒNG BỘ 63 TỈNH THÀNH
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
-            Hệ Sinh Thái Số Biến Bạn Thành Nhà Thám Hiểm
+            Bản Đồ Di Sản & Cuốn Hộ Chiếu Số Game Hóa
           </h2>
-          <p className="text-xs text-slate-500">
-            Mỗi chiếc hộp là một chìa khóa mở ra kho tàng tính năng số không giới hạn
+          <p className="text-xs sm:text-sm text-slate-500">
+            Khám phá 63 tỉnh thành Việt Nam, tương tác trực tiếp trên bản đồ SVG và lật cuốn hộ chiếu đóng mộc tem đỏ
           </p>
+
+          {/* Toggle Tab between Map and Passport Book */}
+          <div className="inline-flex items-center gap-1.5 p-1.5 rounded-2xl bg-slate-100 border border-slate-200 shadow-inner mt-2">
+            <button
+              onClick={() => setPassportView("map")}
+              className={`px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+                passportView === "map"
+                  ? "bg-gradient-to-r from-[#0194f3] to-[#0264c8] text-white shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              <CompassIcon className="w-4 h-4" />
+              <span>Bản Đồ SVG 63 Tỉnh Thành</span>
+            </button>
+            <button
+              onClick={() => setPassportView("book")}
+              className={`px-5 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 ${
+                passportView === "book"
+                  ? "bg-gradient-to-r from-[#0194f3] to-[#0264c8] text-white shadow-sm"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>Cuốn Hộ Chiếu & Bộ Tem Số</span>
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Pillar 1 */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-sky-300 transition-all flex flex-col justify-between group space-y-4">
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0194f3] flex items-center justify-center border border-sky-200 group-hover:scale-110 transition-transform">
-                <MapPin className="w-6 h-6" />
-              </div>
-              <h3 className="font-extrabold text-slate-900 text-base">Hộ Chiếu & Bản Đồ 63 Tỉnh</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Bản đồ tương tác sáng rực khi nhập mã nắp hộp. Định danh thẻ sinh viên và bộ sưu tập tem Hologram đóng dấu di sản.
-              </p>
-            </div>
-            <Link
-              href="/passport"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0194f3] group-hover:underline pt-2"
-            >
-              <span>Xem Thử Cuốn Hộ Chiếu</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          {/* Pillar 2 */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-sky-300 transition-all flex flex-col justify-between group space-y-4">
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-200 group-hover:scale-110 transition-transform">
-                <Headphones className="w-6 h-6" />
-              </div>
-              <h3 className="font-extrabold text-slate-900 text-base">Trạm Audio 3D Soundscape</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Thuyết minh đa phương tiện 2 kênh kết hợp giọng kể trẻ trung với âm thanh hiện trường (sóng biển, chuông chùa, gió đèo).
-              </p>
-            </div>
-            <Link
-              href="/audio"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-600 group-hover:underline pt-2"
-            >
-              <span>Vào Trạm Thuyết Minh</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          {/* Pillar 3 */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-sky-300 transition-all flex flex-col justify-between group space-y-4">
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center border border-rose-200 group-hover:scale-110 transition-transform">
-                <Target className="w-6 h-6" />
-              </div>
-              <h3 className="font-extrabold text-slate-900 text-base">Thử Thách GPS Thực Địa</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Check-in tọa độ vệ tinh tại di sản thật, giải mật thư nắp hộp, tích lũy điểm kinh nghiệm và đua Top trường Đại học.
-              </p>
-            </div>
-            <Link
-              href="/quests"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-rose-600 group-hover:underline pt-2"
-            >
-              <span>Khám Phá Nhiệm Vụ</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          {/* Pillar 4 */}
-          <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-sky-300 transition-all flex flex-col justify-between group space-y-4">
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center border border-emerald-200 group-hover:scale-110 transition-transform">
-                <ShoppingBag className="w-6 h-6" />
-              </div>
-              <h3 className="font-extrabold text-slate-900 text-base">Xưởng Tự Phối Quà & VietQR</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Tự do mix quà 5 bước: Chọn tỉnh ➔ Chọn mô hình 3D ➔ Chọn 3 món OCOP ➔ Soạn thiệp chúc. Sinh mã VietQR chuyển khoản 1 giây.
-              </p>
-            </div>
-            <Link
-              href="/shop"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-600 group-hover:underline pt-2"
-            >
-              <span>Mở Xưởng Tự Mix</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
+        {/* Embedded Interactive Container */}
+        <div className="bg-slate-50/70 p-4 sm:p-8 rounded-3xl border border-slate-200/80">
+          {passportView === "map" ? (
+            <VietnamMap provinces={MOCK_PROVINCES} />
+          ) : (
+            <PassportBook />
+          )}
         </div>
       </section>
 
@@ -416,7 +382,67 @@ export default function HomePage() {
         <SoundscapePlayerDemo />
       </section>
 
-      {/* ================= 6. FEATURED COLLECTION ================= */}
+      {/* ================= 6. CUSTOM BOX STUDIO (XƯỞNG TỰ MIX QUÀ) ================= */}
+      <section id="custom-studio" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <span className="text-xs font-black uppercase text-[#ff5e1f] tracking-wider bg-orange-50 border border-orange-200 px-3 py-1 rounded-full">
+            TỰ DO PHỐI QUÀ THEO Ý BẠN
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+            Xưởng Tự Mix Hộp Quà 5 Bước (Custom Studio)
+          </h2>
+          <p className="text-xs text-slate-500">
+            Chọn tỉnh ➔ Chọn mô hình 3D ➔ Chọn 3 đặc sản OCOP ➔ Soạn thiệp chúc ➔ Quét mã VietQR nhận hộp quà độc bản
+          </p>
+        </div>
+
+        {/* Embedded Custom Box Builder */}
+        <div className="bg-slate-50/70 p-4 sm:p-8 rounded-3xl border border-slate-200/80">
+          <CustomBoxBuilder />
+        </div>
+      </section>
+
+      {/* ================= 7. GPS QUESTS & MISSIONS ================= */}
+      <section id="quests" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <span className="text-xs font-black uppercase text-emerald-600 tracking-wider bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
+            GAMIFICATION DI SẢN THỰC ĐỊA
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+            Săn Nhiệm Vụ GPS & Đua Top Trường Đại Học
+          </h2>
+          <p className="text-xs text-slate-500">
+            Đến tận nơi di sản thật, check-in tọa độ vệ tinh GPS và giải mật thư dưới nắp hộp để tích lũy XP
+          </p>
+        </div>
+
+        {/* Embedded Quests Component */}
+        <div className="bg-slate-50/70 p-4 sm:p-8 rounded-3xl border border-slate-200/80">
+          <QuestList />
+        </div>
+      </section>
+
+      {/* ================= 8. BUDGET ESTIMATOR ================= */}
+      <section id="budget-calc" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <span className="text-xs font-black uppercase text-[#0194f3] tracking-wider bg-sky-50 border border-sky-200 px-3 py-1 rounded-full">
+            CÔNG CỤ THÔNG MINH CHO PHƯỢT THỦ
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-black text-slate-900">
+            Máy Tính Dự Toán Ngân Sách Sinh Viên
+          </h2>
+          <p className="text-xs text-slate-500">
+            Kéo thả số người & số ngày đi để tự động dự toán chi phí trọn gói (xe khách, homestay, ăn uống) không lo bị chặt chém
+          </p>
+        </div>
+
+        {/* Embedded Budget Calculator */}
+        <div className="bg-slate-50/70 p-4 sm:p-8 rounded-3xl border border-slate-200/80">
+          <BudgetCalculator />
+        </div>
+      </section>
+
+      {/* ================= 9. FEATURED COLLECTION ================= */}
       <section id="collection" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div className="space-y-2">
@@ -542,39 +568,20 @@ export default function HomePage() {
                     Đặt Nhanh VietQR
                   </button>
 
-                  <Link
-                    href="/shop"
+                  <a
+                    href="#custom-studio"
                     className="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-sky-50 text-slate-700 hover:text-[#0194f3] font-bold text-xs text-center border border-slate-200 transition"
                   >
                     Tự Phối Lại Box
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        {/* View All & Custom Box Studio CTA Banner */}
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-[#0194f3] via-[#0264c8] to-[#014ca6] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl shadow-sky-500/15">
-          <div className="space-y-1 text-center sm:text-left">
-            <h3 className="text-lg sm:text-xl font-black">
-              Bạn Muốn Tự Tay Mix Hộp Quà Theo Sở Thích Riêng?
-            </h3>
-            <p className="text-xs text-sky-100 max-w-xl">
-              Chọn tỉnh thành, tự bốc mô hình 3D, chọn 3 món đặc sản OCOP và soạn lời chúc thiệp tặng bạn bè tại Xưởng Custom Box Studio.
-            </p>
-          </div>
-          <Link
-            href="/shop"
-            className="py-3 px-6 rounded-2xl bg-white hover:bg-amber-50 text-[#0264c8] font-black text-xs sm:text-sm shrink-0 shadow-lg transition hover:scale-105 active:scale-95 flex items-center gap-2"
-          >
-            <span>Vào Xưởng Tự Mix Quà</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
       </section>
 
-      {/* ================= 7. PRICING & STUDENT PERKS ================= */}
+      {/* ================= 10. PRICING & STUDENT PERKS ================= */}
       <section id="pricing" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-black uppercase text-[#ff5e1f] tracking-wider">
@@ -753,17 +760,17 @@ export default function HomePage() {
               </ul>
             </div>
 
-            <Link
-              href="/shop"
+            <a
+              href="#custom-studio"
               className="w-full py-3 rounded-xl bg-slate-100 hover:bg-sky-50 text-[#0194f3] hover:text-[#0264c8] font-bold text-xs transition text-center block"
             >
               Vào Xưởng Tự Phối Ngay
-            </Link>
+            </a>
           </div>
         </div>
       </section>
 
-      {/* ================= 8. LEADERBOARD & SOCIAL PROOF ================= */}
+      {/* ================= 11. LEADERBOARD & SOCIAL PROOF ================= */}
       <section id="community" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-black uppercase text-[#ff5e1f] tracking-wider">
@@ -828,13 +835,6 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-
-            <Link
-              href="/community"
-              className="text-center block text-xs font-bold text-[#0194f3] hover:underline pt-2"
-            >
-              Xem Chi Tiết Bảng Xếp Hạng Cá Nhân & Đổi Thưởng ➔
-            </Link>
           </div>
 
           {/* Real Reviews & Feedbacks */}
@@ -888,7 +888,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ================= 9. FAQ ACCORDION ================= */}
+      {/* ================= 12. FAQ ACCORDION ================= */}
       <section id="faq" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center space-y-2">
           <span className="text-xs font-black uppercase text-[#ff5e1f] tracking-wider">
@@ -932,8 +932,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ================= 10. FINAL CALL TO ACTION ================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ================= 13. FINAL CALL TO ACTION ================= */}
+      <section id="cta-final" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl bg-gradient-to-br from-[#021836] via-[#022b62] to-[#01142e] text-white p-8 sm:p-14 text-center relative overflow-hidden shadow-2xl border border-white/20 space-y-6">
           {/* Ambient Glows */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-cyan-400/20 rounded-full blur-3xl pointer-events-none" />
@@ -961,12 +961,12 @@ export default function HomePage() {
                 <span>Đặt Mua Travel Box Ngay (-20%)</span>
               </button>
 
-              <Link
-                href="/shop"
+              <a
+                href="#custom-studio"
                 className="py-4 px-6 rounded-2xl bg-white/15 hover:bg-white/25 text-white font-bold text-sm sm:text-base border border-white/30 backdrop-blur-md transition hover:scale-105"
               >
                 <span>Xưởng Tự Phối Quà Riêng</span>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
