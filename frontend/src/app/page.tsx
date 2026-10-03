@@ -37,10 +37,20 @@ import {
 } from "lucide-react";
 
 // Interactive Components
-import UnboxingSimulator from "@/components/home/UnboxingSimulator";
+import dynamic from "next/dynamic";
 import SoundscapePlayerDemo from "@/components/home/SoundscapePlayerDemo";
 import QuickOrderModal from "@/components/home/QuickOrderModal";
 import LandingNavTracker from "@/components/home/LandingNavTracker";
+
+// Dynamic import for Three.js 3D Canvas (no SSR)
+const ThreeBoxCanvas = dynamic(() => import("@/components/home/ThreeBoxCanvas"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-96 rounded-3xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 text-sm">
+      Đang tải không gian 3D Three.js...
+    </div>
+  )
+});
 
 // Deep Experience Modules Embedded Into Single-Page
 import VietnamMap from "@/components/passport/VietnamMap";
@@ -322,9 +332,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ================= 3. UNBOXING SIMULATOR 3D ================= */}
+      {/* ================= 3. UNBOXING SIMULATOR 3D (POWERED BY THREE.JS) ================= */}
       <section id="unboxing" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <UnboxingSimulator />
+        <ThreeBoxCanvas />
       </section>
 
       {/* ================= 4. MAP & PASSPORT INTERACTIVE SHOWCASE ================= */}
